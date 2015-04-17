@@ -1,9 +1,9 @@
 === Contact Form 7 - PayPal Extension ===
 
 Contributors: zealopensource
-Tags: Contact Form 7, form, forms, contactform7, contact form, Paypal submit, Contact Forms 7, Contact Forms, contacted, contacts, Additional Settings, paypal button, integrate paypal button, paypal donation, online payment
+Tags: Contact Form 7, form, forms, contactform7, contact form, Paypal submit, Contact Forms 7, Contact Form 7 + PayPal,Contact Forms, contacted, contacts, Additional Settings, paypal button, integrate paypal button, paypal donation, online payment
 Donate link: http://www.zealousweb.net/payment/
-Requires at least: 4.0.1
+Requires at least: 3.0.1
 Tested up to: 4.1.x
 Stable tag: 1.0
 License: GPLv3 or later License
