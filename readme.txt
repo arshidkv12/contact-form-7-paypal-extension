@@ -8,7 +8,7 @@ Tested up to: 4.1.x
 Stable tag: 1.1
 License: GPLv3 or later License
 CF7 requires at least: 3.0
-CF7 tested up to: 4.1.x
+CF7 tested up to: 4.2
 Version: 1.1
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
