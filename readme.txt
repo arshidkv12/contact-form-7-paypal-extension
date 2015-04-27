@@ -4,11 +4,11 @@ Contributors: zealopensource
 Tags: Contact Form 7, form, forms, contactform7, contact form, Paypal submit, Contact Forms 7, Contact Form 7 + PayPal,Contact Forms, contacted, contacts, Additional Settings, paypal button, integrate paypal button, paypal donation, online payment
 Donate link: http://www.zealousweb.net/payment/
 Requires at least: 3.0.1
-Tested up to: 4.1.x
+Tested up to: 4.2
 Stable tag: 1.1
 License: GPLv3 or later License
 CF7 requires at least: 3.0
-CF7 tested up to: 4.2
+CF7 tested up to: 4.1.x
 Version: 1.1
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
