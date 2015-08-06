@@ -5,11 +5,11 @@ Tags: Contact Form 7, form, forms, contactform7, contact form, Paypal submit, Co
 Donate link: http://www.zealousweb.net/payment/
 Requires at least: 3.0.1
 Tested up to: 4.2.x
-Stable tag: 1.8
+Stable tag: 2.0
 License: GPLv3 or later License
 CF7 requires at least: 3.0
-CF7 tested up to: 4.2
-Version: 1.8
+CF7 tested up to: 4.2.x
+Version: 2.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 
@@ -29,7 +29,7 @@ Using this plugin, you can add ‘PayPal submit button’ in the form which will
 
 Digging up further to its advantage, the plugin doesn’t make use of the action handler ‘on_set_ok’ in the ‘Additional Settings’ tab of the CF7. You just need to add some parameters and get PayPal functionality in your CF7. In order to use this plugin, make sure your Contact Form 7 is activated.
 
-Need technical assistance in integrating PayPal to your Contact Form 7? Contact ZealousWeb, a leading web development company and the developers of this plugin.
+Need technical assistance in integrating PayPal to your Contact Form 7? Contact [ZealousWeb](https://opensource.zealousweb.com), a leading web development company and the developers of this plugin.
 
 = Contact Form 7 - PayPal Extension Features =
 
@@ -39,6 +39,20 @@ Need technical assistance in integrating PayPal to your Contact Form 7? Contact 
 *	It accepts dynamic value from frontend for parameters like item description, amount and quantity.
 *	There is a testing option, known as ‘Sandbox’, available to help you ensure the plugin is functioning properly.
 *	You can also add ‘Return URL’ and ‘Cancel URL’ for payment cancellation facility.
+
+> #### Contact Form 7 - PayPal Extension PRO
+> We had released = PRO version = of this plugin with extra advantageous features added.<br />
+>
+> * 22 PayPal languages supported - Multilingual.<br />
+> * Save Contact Form 7 payment data into database.<br />
+> * Admin can edit or delete Contact Form 7 payment data.<br />
+> * PayPal payment response details stored at admin side.<br />
+> * Export Contact Form 7 payment data to PDF and CSV. <br />
+> * All filters and search facility available at admin side. <br />
+> * Admin can manage 'Status' of submitted data if PayPal payment has been successfully received. <br />
+>
+>
+> [Get more information of Pro version here](http://opensource.zealousweb.com/contact-form-7-paypal-extension-pro/)
 
 
 == Plugin Requirement ==
@@ -55,8 +69,13 @@ WordPress   : Wordpress 3.0 and latest
 == Screenshots ==
 1. Screenshot 'screenshot-1.png' shows all the possible options available for this plugin.
 1. Screenshot 'screenshot-2.png' shows front end view for this plugin.
+1. Screenshot 'screenshot-3.png' shows admin view of saved Contact Form 7 - PayPal Extension submitted data in PRO Version.
+1. Screenshot 'screenshot-4.png' shows PayPal payment response details at admin side in PRO Version.
 
 == Changelog ==
+
+= 2.0 - 06/08/2015 =
+* Change - Launched PRO Version "Contact Form 7 - PayPal Extension PRO" and some layout changes
 
 = 1.8 - 15/06/2015 =
 * Change - Added support for hidden field.

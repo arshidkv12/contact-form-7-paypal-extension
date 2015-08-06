@@ -2,10 +2,10 @@
 /**
  * Plugin Name: Contact Form 7 - PayPal Extension
  * Plugin URL: https://wordpress.org/plugins/contact-form-7-paypal-extension/
- * Description:  This plugin will integrate PayPal submit button which redirects you to PayPal website for making your payments after submitting the form.
- * Version: 1.8
- * Author: ZealousWeb Technologies
- * Author URI: http://zealousweb.com
+ * Description:  This plugin will integrate PayPal submit button which redirects you to PayPal website for making your payments after submitting the form. <strong>PRO Version is available now.</strong>
+ * Version: 2.0
+ * Author: ZealousWeb
+ * Author URI: https://zealousweb.com
  * Developer: The Zealousweb Team
  * Developer E-Mail: info@opensource.zealousweb.com
  * Text Domain: contact-form-7-extension
@@ -42,6 +42,21 @@ function paypal_submit_activation_check()
         wp_die( __( '<b>Warning</b> : Install/Activate Contact Form 7 to activate "Contact Form 7 - PayPal Extension" plugin', 'contact-form-7' ) );
     }
 }
+
+/** 
+  * Add PRO Version link in admin 
+  */ 
+add_filter('plugin_row_meta',  'zwt_register_plugins_link', 10, 2);
+function zwt_register_plugins_link ($links, $file) {
+   $base = plugin_basename(__FILE__);
+   if ($file == $base) {
+       $links[] = '<a href="https://opensource.zealousweb.com/contact-form-7-paypal-extension-pro/">' . __('PRO Version') . '</a>';
+       $links[] = '<a href="https://opensource.zealousweb.com/">' . __('More Plugins by ZealousWeb') . '</a>';
+       $links[] = '<a href="http://www.zealousweb.net/payment/">' . __('Donate') . '</a>';
+   }
+   return $links;
+}
+
 
 /**
 ** A base module for [paypalsubmit] - A submit button that will redirect to PayPal after form submit.
@@ -207,6 +222,9 @@ function wpcf7_tg_pane_paypal_submit( $contact_form, $args = '' ) {
 <legend><?php echo sprintf( esc_html( $description ), $desc_link ); ?></legend>
 <table class="form-table">
 <tbody>
+<tr><td colspan="2"><a href="https://opensource.zealousweb.com/contact-form-7-paypal-extension-pro" target="_blank">
+	<img src="<?php echo plugin_dir_url().'contact-form-7-paypal-extension/assets/cf7pn.png';?>" width="540">
+</a></td></tr>
 <tr>
 <td colspan="2"><b>NOTE: If required fields are missing, PayPal Submit button works as simple Submit button.</b></td>
 </tr>
@@ -214,7 +232,7 @@ function wpcf7_tg_pane_paypal_submit( $contact_form, $args = '' ) {
 <td><code>id</code> <?php echo '<font style="font-size:10px"> (optional)</font>';?><br />
 <input type="text" name="id" class="idvalue oneline option" /></td>
 
-<td><code>class</code> <?php echo '<font style="font-size:10px"> (required)</font>'; ?><br />
+<td><code>class</code> <?php echo '<font style="font-size:10px"> (optional)</font>'; ?><br />
 <input type="text" name="class" class="classvalue oneline option" /></td>
 </tr>
 
@@ -240,14 +258,17 @@ function wpcf7_tg_pane_paypal_submit( $contact_form, $args = '' ) {
 </tr>
 <tr>
 	<td colspan="2">
-	<table><tr>
-		<td style="width:33%;padding:0px 3px;"><?php echo esc_html( __( 'Itemamount Field ID', 'contact-form-7' ) ); echo '<font style="font-size:10px"> (required)</font>'; ?><br />
-			<input type="text" name="itemamount" class="oneline option"/></td>
-		<td style="width:33%;padding:0px 3px;"><?php echo esc_html( __( 'Itemname Field ID', 'contact-form-7' ) ); echo '<font style="font-size:10px"> (optional)</font>';?><br />
-			<input type="text" name="itemname" class="oneline option" /></td>
-		<td style="width:33%;padding:0px 3px;"><?php echo esc_html( __( 'Quantity Field ID', 'contact-form-7' ) ); echo '<font style="font-size:10px"> (optional)</font>'; ?><br />
-			<input type="text" name="quantity" class="oneline option" /></td>
-	</tr></table><hr>
+	<table>
+		<tr><td><?php echo esc_html( __( 'Itemamount Field ID', 'contact-form-7' ) ); echo '<font style="font-size:10px"> (required)</font>'; ?></td>
+			<td><input type="text" name="itemamount" class="oneline option"/></td>
+		</tr>
+		<tr><td><?php echo esc_html( __( 'Itemname Field ID', 'contact-form-7' ) ); echo '<font style="font-size:10px"> (optional)</font>';?></td>
+			<td><input type="text" name="itemname" class="oneline option" /></td>
+		</tr>
+		<tr><td><?php echo esc_html( __( 'Quantity Field ID', 'contact-form-7' ) ); echo '<font style="font-size:10px"> (optional)</font>'; ?></td>
+			<td><input type="text" name="quantity" class="oneline option" /></td>
+		</tr>
+	</table><hr>
 </td>
 </tr>
 <tr>
