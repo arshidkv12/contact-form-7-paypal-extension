@@ -3,7 +3,7 @@
  * Plugin Name: Contact Form 7 - PayPal Extension
  * Plugin URL: https://wordpress.org/plugins/contact-form-7-paypal-extension/
  * Description:  This plugin will integrate PayPal submit button which redirects you to PayPal website for making your payments after submitting the form. <strong>PRO Version is available now.</strong>
- * Version: 2.0
+ * Version: 2.3
  * Author: ZealousWeb
  * Author URI: https://zealousweb.com
  * Developer: The Zealousweb Team
@@ -51,7 +51,7 @@ function zwt_register_plugins_link ($links, $file) {
    $base = plugin_basename(__FILE__);
    if ($file == $base) {
        $links[] = '<a href="https://opensource.zealousweb.com/contact-form-7-paypal-extension-pro/">' . __('PRO Version') . '</a>';
-       $links[] = '<a href="https://opensource.zealousweb.com/">' . __('More Plugins by ZealousWeb') . '</a>';
+       $links[] = '<a href="https://opensource.zealousweb.com/shop">' . __('More Plugins by ZealousWeb') . '</a>';
        $links[] = '<a href="http://www.zealousweb.net/payment/">' . __('Donate') . '</a>';
    }
    return $links;
@@ -67,8 +67,8 @@ function zwt_register_plugins_link ($links, $file) {
 add_action('init', 'contact_form_7_paypal_submit', 11);
 
 function contact_form_7_paypal_submit() {	
-	if(function_exists('wpcf7_add_shortcode')) {
-		wpcf7_add_shortcode( 'paypalsubmit', 'wpcf7_paypal_submit_shortcode_handler', false );		
+	if(function_exists('wpcf7_add_form_tag')) {
+		wpcf7_add_form_tag( 'paypalsubmit', 'wpcf7_paypal_submit_shortcode_handler', false );		
 	} else {
 		 return; 		
 	}
@@ -98,7 +98,13 @@ function wpcf7_paypal_location(){	?>
 		    else
 		    {
 		    	amount = 0;
-		    }
+		    }		   
+		    // if(amount.indexOf('-') != -1){
+		    // 	amount = amount.split('-');
+		    // 	amount = amount[1].trim();
+		    // }
+		    amount = itemamount;
+		    
 	        /*------------------------------------------------------*/
 	        var quantity = 0;	
 	        if(itemqty != "" && itemqty != undefined){
@@ -124,6 +130,7 @@ function wpcf7_paypal_location(){	?>
 		    } else {
 		    	item = "";
 		    }
+
 	    	if(amount != "" && amount != undefined) {					
 				paypal_location = url + '&amount=' + amount + '&item_name=' + item + '&quantity=' + quantity;													
 			} 						
@@ -131,7 +138,7 @@ function wpcf7_paypal_location(){	?>
 		jQuery(document).ready(function(){
 			jQuery(document).on('mailsent.wpcf7', function () {	
 				if(paypal_url != "" && paypal_location == "")
-			    {			    	
+			    {	 		    	
 			    	jQuery('.wpcf7-response-output').append('You are not redirected to PayPal as you have not configured PayPal Submit Button properly. <br>');
 			    }
 			    else if(paypal_location != "")
@@ -148,8 +155,9 @@ function wpcf7_paypal_location(){	?>
   * Regenerate shortcode into PayPal submit button
   */
 
-function wpcf7_paypal_submit_shortcode_handler( $tag ) {		
-	$tag = new WPCF7_Shortcode( $tag );	
+function wpcf7_paypal_submit_shortcode_handler( $tag ) {	
+
+	$tag = new WPCF7_FormTag( $tag );	
 	$class = wpcf7_form_controls_class( $tag->type );	
 	$atts = array();	
 	$atts['class'] = $tag->get_class_option( $class );
@@ -188,8 +196,8 @@ function wpcf7_paypal_submit_shortcode_handler( $tag ) {
 	$atts['value'] = $value;
 
 	$atts = wpcf7_format_atts( $atts );
-
-	$html .= sprintf( '<input %1$s />', $atts );
+ 	
+ 	$html = sprintf( '<input %1$s />', $atts );
 
 	return $html;
 }
@@ -201,9 +209,11 @@ function wpcf7_paypal_submit_shortcode_handler( $tag ) {
 add_action( 'admin_init', 'wpcf7_add_tag_generator_paypal_submit', 55 );
 
 function wpcf7_add_tag_generator_paypal_submit() {	
-	$tag_generator = WPCF7_TagGenerator::get_instance();
-	$tag_generator->add( 'paypal-submit', __( 'PayPal Submit button', 'contact-form-7' ),
+	if(class_exists('WPCF7_TagGenerator')){
+		$tag_generator = WPCF7_TagGenerator::get_instance();
+		$tag_generator->add( 'paypal-submit', __( 'PayPal Submit button', 'contact-form-7' ),
 		'wpcf7_tg_pane_paypal_submit', array( 'nameless' => 1 ) );
+	}	
 }
 
 /** Parameters field for generating tag at backend **/
@@ -222,8 +232,8 @@ function wpcf7_tg_pane_paypal_submit( $contact_form, $args = '' ) {
 <legend><?php echo sprintf( esc_html( $description ), $desc_link ); ?></legend>
 <table class="form-table">
 <tbody>
-<tr><td colspan="2"><a href="https://opensource.zealousweb.com/contact-form-7-paypal-extension-pro" target="_blank">
-	<img src="<?php echo plugin_dir_url().'contact-form-7-paypal-extension/assets/cf7pn.png';?>" width="540">
+<tr><td colspan="2"><a href="https://opensource.zealousweb.com/shop/" target="_blank">
+	<img src="<?php echo bloginfo('wpurl').'/wp-content/plugins/contact-form-7-paypal-extension/assets/cf7pn.jpg';?>" width="540">
 </a></td></tr>
 <tr>
 <td colspan="2"><b>NOTE: If required fields are missing, PayPal Submit button works as simple Submit button.</b></td>
